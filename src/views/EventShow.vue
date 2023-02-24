@@ -22,12 +22,17 @@
 </template>
 
 <script>
-import { mapState,mapActions } from 'vuex';
+
 import nprogress from 'nprogress';
 import store from '@/store';  
 export default {
 
-props:['id'],
+props:{
+  event:{
+    type:Object,
+    required:true
+  }
+}, 
 
 beforeRouteEnter(routeTo,routeFrom,next){
   nprogress.start()
@@ -36,12 +41,12 @@ beforeRouteEnter(routeTo,routeFrom,next){
     next()
   })
 },
+
+
 // created(){
 //   this.fetchEvent(this.id)
 // },
-computed:mapState(
-  {event:state => state.event.event}
-),
+
 // methods:mapActions('event',['fetchEvent'])
 }
 </script>
