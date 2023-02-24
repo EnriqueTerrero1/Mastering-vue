@@ -14,11 +14,11 @@
 export default {
 
   props:{
-    event:Array
+    event:Object
   },
-  data:{
-   event:[]
-  }
+  data(){
+    return {}
+  },
 }
 </script>
 

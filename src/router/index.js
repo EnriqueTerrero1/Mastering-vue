@@ -18,7 +18,9 @@ const routes = [
 {
   path:'/',
   name:'Home',
+  props:true,
   component:Home
+  
 },
 
 
@@ -84,6 +86,7 @@ const routes = [
     path:'/eventList',
     name:'event-list',
     component:EventList,
+    props:true,
     meta:{requiresAuth:true}
   }
 

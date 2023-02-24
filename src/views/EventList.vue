@@ -1,5 +1,5 @@
-<template>
-<div>
+<template >
+<div v-if="isLoading">
   <h1>Events for {{ user.user.name }}</h1>
 <EventCard v-for="event in event.events" :key="event.id" :event="event"/>
 <template v-if="page >1">
@@ -22,6 +22,8 @@
 import EventCard from '@/components/EventCard.vue'
 import { mapState,mapGetters } from 'vuex';
 import store from '@/store';
+import { authComputed } from '../store/modules/helpers.js'
+
 
 function getPageEvents(routeTo,next){
 
@@ -38,12 +40,18 @@ function getPageEvents(routeTo,next){
 
 export default {
 
+  data(){
+    return {
+      isLoading:true,
+      events:[]
+    }
+  },
 
   props:{
     page:{
       type:Number,
       required:true
-    }
+    },
   },
   components: { EventCard },
 
@@ -55,19 +63,9 @@ export default {
 getPageEvents(routeTo,next)
  },
 
-  // created(){
-    // console.log(getTotalPages)
-
-    // this.$store.dispatch('event/fetchEvents',{
-      // perPage:3,
-      // page:this.page,
-    // })
-  // },
-  computed:{
   
-  ...mapState(['event','user',]),
-
-}
+  computed:{...mapState(['event','user']),
+...authComputed}
 }
 </script>
 
